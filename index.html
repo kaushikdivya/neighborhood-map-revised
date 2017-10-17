@@ -5,17 +5,17 @@
     <head>
         <meta charset="UTF-8">
         <title>Store Map</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="static/style.css">
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
-        <script type="text/javascript" src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
     </head>
 
     <body>
 
         <div id="map" class="main"></div>
-            <div id="wrapper" class="toggled">
+            <div id="wrapper" class="">
              <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
-                <span class="nav sidebar-nav text">Search for nearby places</span>
                 <input class="sidebar-brand" placeholder="Filter" id="input" type="search" data-bind="textInput: query, valueUpdate: 'keydown'" autocomplete="off">
                 <ul data-bind="template: {name: 'marker', foreach: searchResults}"></ul>
                     <script type="text/html" id="marker">
@@ -32,19 +32,28 @@
                 </ul>
              </nav>
              <div id="page-content-wrapper">
-                <button type="button" class="hamburger animated fadeInLeft is-closed" data-toggle="offcanvas">
+                <button type="button" class="hamburger animated fadeInLeft" data-toggle="offcanvas">
                 <span class="hamb-top"></span>
                 <span class="hamb-middle"></span>
                 <span class="hamb-bottom"></span>
                 </button>
             </div>
         </div>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
 
         <script src="js/app.js"></script>
-
         <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3u30R7S9v8hz0jTiVk09CwuFGu7Qb4kw&libraries=places,geometry,drawing&callback=initMap">
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3u30R7S9v8hz0jTiVk09CwuFGu7Qb4kw&libraries=places,geometry,drawing&callback=neighborhoodMapApp.initMap">
+            setTimeout(function () {
+                try{
+                    if (!google || !google.maps) {
+                        throw "Google maps not loaded";
+                    }
+                }
+                catch (e) {
+                    alert(e);
+                }
+            }, 5000);
         </script>
 
     </body>
