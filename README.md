@@ -16,6 +16,10 @@ This neighborhood map project shows 13 Macy's store locations in SF bay area. Ea
 - If the screen size is smaller than 789 pixles, side nav is closed by default.
 - The design of the project is responsive i.e it renders all the components of the project for all devices properly.
 
+### Install
+- Clone or download this project to your local. https://github.com/kaushikdivya/neighborhood-map-revised.git
+- Open the index.html in your favorite browser.
+
 ### Sources
 Knockout.js
 - https://stackoverflow.com/questions/29667134/knockout-search-in-observable-array
