@@ -251,7 +251,7 @@ var neighborhoodMapApp = {
                     streetViewService.getPanoramaByLocation(marker.position,
                         radius, getStreetView);
                   },
-                    fail: function(error) {
+                    error: function(error) {
                         weather_data = "Weather API can't be loaded";
                   }
                 });
