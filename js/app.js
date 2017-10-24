@@ -282,8 +282,8 @@ var neighborhoodMapApp = {
             var setTimer = function(marker) {
                 window.setTimeout(function() {
                     marker.setAnimation(null);
-                }, 1400)
-            }
+                }, 1400);
+            };
 
             var createMarkers = function() {
                 var storeLocations = module.storeLocations;
