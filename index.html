@@ -8,28 +8,27 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="static/style.css">
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
-        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
 
     <body>
 
         <div id="map" class="main"></div>
             <div id="wrapper" class="">
-             <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+             <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper">
                 <input class="sidebar-brand" placeholder="Filter" id="input" type="search" data-bind="textInput: query, valueUpdate: 'keydown'" autocomplete="off">
                 <ul data-bind="template: {name: 'marker', foreach: searchResults}"></ul>
-                    <script type="text/html" id="marker">
-                        <div data-bind="click: $parent.sideNavClick">
-                            <a href="#" data-bind="attr: {id: id}">
-                                <li>
-                                    <p data-bind="text: title"></p>
-                                    <p data-bind="text: streetAddress"></p>
-                                    <p data-bind="text: cityStateZipCode"></p>
-                                </li>
-                            </a>
-                        </div>
-                    </script>
-                </ul>
+                <script type="text/html" id="marker">
+                    <div data-bind="click: $parent.sideNavClick">
+                        <a href="#" data-bind="attr: {id: id}">
+                            <li>
+                                <p data-bind="text: title"></p>
+                                <p data-bind="text: streetAddress"></p>
+                                <p data-bind="text: cityStateZipCode"></p>
+                            </li>
+                        </a>
+                    </div>
+                </script>
              </nav>
              <div id="page-content-wrapper">
                 <button type="button" class="hamburger animated fadeInLeft" data-toggle="offcanvas">
@@ -40,20 +39,9 @@
             </div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
-
         <script src="js/app.js"></script>
-        <script async defer
+        <script async defer onerror="mapErrorHandler()"
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3u30R7S9v8hz0jTiVk09CwuFGu7Qb4kw&libraries=places,geometry,drawing&callback=neighborhoodMapApp.initMap">
-            setTimeout(function () {
-                try{
-                    if (!google || !google.maps) {
-                        throw "Google maps not loaded";
-                    }
-                }
-                catch (e) {
-                    alert(e);
-                }
-            }, 5000);
         </script>
 
     </body>

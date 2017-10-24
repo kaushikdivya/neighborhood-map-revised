@@ -100,7 +100,17 @@ var neighborhoodMapApp = {
         var self = this;
         var uluru = {lat: 37.5483, lng: -122.2128};
         var mapOptions = {
-        center: uluru
+            center: uluru,
+            mapTypeControl: true,
+            mapTypeControlOptions: {
+                style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+                position: google.maps.ControlPosition.TOP_CENTER
+            },
+            zoomControl: true,
+            zoomControlOptions: {
+                position: google.maps.ControlPosition.RIGHT_CENTER
+            },
+            disableDefaultUI: true
         };
         var map = new google.maps.Map(document.getElementById('map'), mapOptions);
         return map;
@@ -256,6 +266,7 @@ var neighborhoodMapApp = {
                         marker.setAnimation(null);
                     } else {
                         marker.setAnimation(google.maps.Animation.BOUNCE);
+                        setTimer(marker);
                     }
                     populateInfoWindow(marker);
                     infowindow.open(map, marker);
@@ -267,6 +278,12 @@ var neighborhoodMapApp = {
                     });
                 };
             };
+
+            var setTimer = function(marker) {
+                window.setTimeout(function() {
+                    marker.setAnimation(null);
+                }, 1400)
+            }
 
             var createMarkers = function() {
                 var storeLocations = module.storeLocations;
@@ -309,7 +326,11 @@ var neighborhoodMapApp = {
                     if (!self.query() || location.title.toLowerCase().indexOf(q) >= 0) {
                         location.marker.setVisible(true);
                         if (self.query()) {
+                            if (location.marker.getAnimation !== null) {
+                                location.marker.setAnimation(null);
+                            }
                             location.marker.setAnimation(google.maps.Animation.BOUNCE);
+                            setTimer(location.marker);
                         } else {
                             location.marker.setAnimation(google.maps.Animation.DROP);
                         }
@@ -331,3 +352,8 @@ var neighborhoodMapApp = {
     }
 
 };
+
+
+function mapErrorHandler() {
+    alert("Map can't be loaded.");
+}
